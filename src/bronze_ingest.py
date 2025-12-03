@@ -1,14 +1,31 @@
 from pyspark.sql import functions as F
-from delta.tables import DeltaTable  # not used yet but useful later
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, TimestampType
 from spark_utils import get_spark
 import config
+
+# Define explicit schemas instead of inferSchema
+
+customer_schema = StructType([
+    StructField("customer_id", StringType(), True),
+    StructField("first_name", StringType(), True),
+    StructField("last_name", StringType(), True),
+    StructField("email", StringType(), True),
+    StructField("age", IntegerType(), True)
+])
+
+orders_schema = StructType([
+    StructField("order_id", StringType(), True),
+    StructField("customer_id", StringType(), True),
+    StructField("order_ts", StringType(), True),
+    StructField("amount", DoubleType(), True)
+])
 
 
 def ingest_customers_bronze(spark):
     df_customers = (
         spark.read
+        .schema(customer_schema)
         .option("header", "true")
-        .option("inferSchema", "true")
         .csv(str(config.CUSTOMERS_CSV_PATH))
     )
 
@@ -31,8 +48,8 @@ def ingest_customers_bronze(spark):
 def ingest_orders_bronze(spark):
     df_orders = (
         spark.read
+        .schema(orders_schema)
         .option("header", "true")
-        .option("inferSchema", "true")
         .csv(str(config.ORDERS_CSV_PATH))
     )
 
