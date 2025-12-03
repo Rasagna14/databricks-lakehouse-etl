@@ -1,0 +1,4 @@
+raw_path: "dbfs:/mnt/raw/telemetry"
+bronze_path: "dbfs:/mnt/bronze/telemetry"
+silver_path: "dbfs:/mnt/silver/telemetry"
+gold_path: "dbfs:/mnt/gold/telemetry_daily"
