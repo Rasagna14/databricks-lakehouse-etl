@@ -1,0 +1,50 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Spark checkpoint & metadata files
+checkpoint/
+_checkpoints/
+spark-warehouse/
+derby.log
+
+# Databricks-specific files
+.dbcArchive/
+.dbc/
+.DS_Store
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.env/
+*.env
+*.env.*
+
+# Logs
+*.log
+logs/
+*.out
+
+# IDE related
+.idea/
+.vscode/
+*.iml
+
+# Packaging
+dist/
+build/
+*.egg-info/
+
+# Data files (optional)
+data/raw/
+data/tmp/
+*.csv
+*.json
+
+# OS files
+Thumbs.db
